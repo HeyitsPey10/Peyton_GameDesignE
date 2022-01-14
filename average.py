@@ -1,3 +1,6 @@
+import os
+os.system('cls')
+
 #Peyton Jacobe
 #Jan 14
 #Declare variables, print variables, print type of data, learn some operators 
