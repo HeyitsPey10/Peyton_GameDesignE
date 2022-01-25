@@ -3,7 +3,8 @@
 #learning the input() function 
 #type casting, branching, looping 
 
-import os, random 
+import os, random
+from tkinter import Menu 
 os.system('cls')
 
 #declare variable for user input 
@@ -11,6 +12,15 @@ os.system('cls')
 
 #guess a number
 # myNumber = 9 
+print("##################################")
+print("#    Guess a Number Game Menu    #")
+print()
+choice = input("""
+Select one choice A-C
+A: 1-10
+B: 1-50
+C: 1-100
+Please enter your choice:   """)
 myNumber=random.randint(1,10)
 GameOn=True
 while(GameOn):
