@@ -13,10 +13,13 @@ os.system('cls')
 #guess a number
 # myNumber = 9 
 print("##################################")
+print("#                                #")
 print("#    Guess a Number Game Menu    #")
+print("#                                #")
+print("##################################")
 print()
 choice = input("""
-Select one choice A-C
+Select level A, B, or C
 A: 1-10
 B: 1-50
 C: 1-100
