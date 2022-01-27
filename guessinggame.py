@@ -1,5 +1,6 @@
 import random, os
 os.system('cls')
+tries=0 
 
 #Today we're learning try and except, functions, elif
 #Let's make the menu a function (key word def)
@@ -22,6 +23,7 @@ while check:
         check = False
     except ValueError:
         print("Please try again, only enter 1-3")
+        
 
 if choice == 1:
     myNumber= random.randint(1,10)
@@ -41,6 +43,7 @@ while(GameOn):
         GameOn=False
     else:
         print("good guess")
+        tries+1
 print("The number was  "+ str(myNumber))
 os.system('cls')
 menu()
