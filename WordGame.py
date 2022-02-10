@@ -5,14 +5,39 @@
 import os, random
 os.system('cls')
 
+print('====================================')
+print('=                                  =')
+print('=           Welcome to the         =')
+print('=        WORD GUESSING GAME!       =')
+print('=       please pick a category:    =')
+print('=         1. Fruits                =')
+print('=         2. Animals               =')
+print('=         3. Computer Parts        =')
+print('=                                  =')
+print('====================================')
+
+
+
+Check1=True
+while Check1:
+        try:
+            choice=int(input('\nPlease select 1, 2, or 3: '))
+            if choice>0 and choice<4:
+                Check1=False 
+        except ValueError:
+            print('Sorry, not an option, please pick 1, 2, or 3.')
+        
+
+
 word=""
 guess=""
 def selectWord():
     global word
     fruits=['banana', 'grape', 'strawberry', 'orange', 'apple', 'blackberry', 'papaya', 'watermelon', 'mango', 'durian', 'dragonfruit', 'blueberry', 'tomato', 'lychee', 'cantaloupe', 'honeydew', 'kiwi']
-
-
     word=random.choice(fruits)
+
+
+
 
 def guessFunction():
     global guess
