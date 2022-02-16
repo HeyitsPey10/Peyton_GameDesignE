@@ -13,6 +13,8 @@ print('=       please pick a category:    =')
 print('=         1. Fruits                =')
 print('=         2. Animals               =')
 print('=         3. Computer Parts        =')
+print('=         4. Score Board           =')
+print('=         5. Exit                  =')
 print('=                                  =')
 print('====================================')
 
@@ -35,6 +37,8 @@ def selectWord():
     global word
     fruits=['banana', 'grape', 'strawberry', 'orange', 'apple', 'blackberry', 'papaya', 'watermelon', 'mango', 'durian', 'dragonfruit', 'blueberry', 'tomato', 'lychee', 'cantaloupe', 'honeydew', 'kiwi']
     word=random.choice(fruits)
+
+    
 
 
 
