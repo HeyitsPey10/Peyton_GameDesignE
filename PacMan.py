@@ -55,12 +55,12 @@ while check:
         square.x += move 
     #jumping part
         if not JUMP: 
-        if keys[pygame.K_w] and square.y >= move:
-            square.y -= move
-        if keys[pygame.K_s] and square.y < HEIGHT - (hbox + move):
-            square.y += move
-        if keys[pygame.K_SPACE]:
-            JUMP=True
+            if keys[pygame.K_w] and square.y >= move:
+                square.y -= move
+            if keys[pygame.K_s] and square.y < HEIGHT - (hbox + move):
+                square.y += move
+            if keys[pygame.K_SPACE]:
+                JUMP=True
 
     else:
         if jumpCount >=-MAX:
