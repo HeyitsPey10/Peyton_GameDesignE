@@ -37,6 +37,10 @@ colors={'white':[255,255,255], 'red':[255,0,0], 'aqua': [102,153,255], 'purple':
 background= colors.get('pink')
 sq_color=colors.get('navy')
 cr_color=colors.get('purple')
+
+MAX=10
+jumpCount=MAX
+JUMP=False
 while check:
     screen.fill(background)
     for case in pygame.event.get():
@@ -49,10 +53,24 @@ while check:
         square.x -= move
     if keys[pygame.K_d] and square.x <WIDTH- (wbox + move):
         square.x += move 
-    if keys[pygame.K_w] and square.y >= move:
-        square.y -= move
-    if keys[pygame.K_s] and square.y < HEIGHT - (hbox + move):
-        square.y += move   
+    #jumping part
+        if not JUMP: 
+        if keys[pygame.K_w] and square.y >= move:
+            square.y -= move
+        if keys[pygame.K_s] and square.y < HEIGHT - (hbox + move):
+            square.y += move
+        if keys[pygame.K_SPACE]:
+            JUMP=True
+
+    else:
+        if jumpCount >=-MAX:
+            square.y -= jumpCount*abs(jumpCount)/2 
+            jumpCount -=1
+        else:
+            jumpCount=MAX
+            JUMP=False
+
+
 #finished circle
     if keys[pygame.K_LEFT] and xc >= radius+ move:
         xc -= move
@@ -63,7 +81,13 @@ while check:
     if keys[pygame.K_DOWN] and yc < HEIGHT - (radius+move):
         yc += move
      
-  
+    checkCollide = square.collidepoint((xc,yc))
+    if checkCollide:
+        square.x=random.randint(wbox, WIDTH-wbox)
+        square.y=random.randint(hbox, HEIGHT-hbox)
+        rad +=move
+
+
     pygame.draw.rect(screen, sq_color, square)
     pygame.draw.circle(screen, cr_color, (xc,yc), rad)
     pygame.display.update()
