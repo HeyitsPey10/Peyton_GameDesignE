@@ -22,7 +22,7 @@ hbox=30
 #circle radius
 rad=15
 xc=random.randint(rad, WIDTH-rad)
-xc=random.randint(rad, HEIGHT-rad)
+yc=random.randint(rad, HEIGHT-rad)
 #creating the rectangle
 square=pygame.Rect(xs,ys,wbox,hbox)
 
@@ -33,10 +33,27 @@ pygame.display.set_caption('Circle eats square')
 #define colors
 colors={'white':[255,255,255], 'red':[255,0,0], 'aqua': [102,153,255], 'purple': [48,25,52], 'pink': [200,3,75], 'magenta': [255,0,255], 'orange': [255,85,0], 'navy': [5,31,64]}
 
+randColors=random.choice(list(colors))
 #get colors
 background= colors.get('pink')
-sq_color=colors.get('navy')
-cr_color=colors.get('purple')
+randColor=''
+#sq_color=colors.get('navy')
+#making a random color for the square
+
+cr_color=colors.get('white')
+def changeColor():
+    global randColor
+    colorCheck=True
+    while colorCheck:
+        randColor=random.choice(list(colors))
+        if randColor==background:
+            randColor=random.choice(list(colors))
+        else:
+            colorCheck=False
+
+changeColor()
+sq_color=colors.get(randColor)
+
 
 MAX=10
 jumpCount=MAX
@@ -85,6 +102,8 @@ while check:
     if checkCollide:
         square.x=random.randint(wbox, WIDTH-wbox)
         square.y=random.randint(hbox, HEIGHT-hbox)
+        changeColor()
+        sq_color=colors.get(randColor)
         rad +=move
 
 
