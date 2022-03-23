@@ -45,33 +45,24 @@ pygame.init()
  
 
 #Declare constants, variables, list, dictionaries, any object
-
 #scree size
 
 WIDTH=700
-
 HEIGHT=700
-
 check=True #for the while loop
-
 move=5 #pixels
 
 #square variables
 
 xs=20
-
 ys=20
-
 wbox=30
-
 hbox=30
 
 #circle variables
 
 rad=15
-
 xc=random.randint(rad, WIDTH-rad)
-
 yc=random.randint(rad, HEIGHT-rad)
 
  
@@ -79,61 +70,39 @@ yc=random.randint(rad, HEIGHT-rad)
 #inscribed Square:
 
 ibox=int(rad*math.sqrt(2))
-
 startpoint = (int(xc-ibox/2),int(yc-ibox/2))
-
 print(startpoint[0]-ibox,startpoint[1])
-
 insSquare=pygame.Rect(startpoint[0],startpoint[1],ibox,ibox)
 
 #creating the rect object
-
 square=pygame.Rect(xs,ys,wbox,hbox)
 
- 
-
 #create screen
-
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
-
 pygame.display.set_caption('Circle eats Square')
 
- 
 
 #define colors
 
 colors={'white':[255,255,255], 'red':[255,0,0], 'aqua':[102,153, 255],
-
 'orange':[255,85,0],'purple':[48,25,52],'navy':[5,31,64],'pink':[200,3,75]}
 
 #Get colors
 
 background= colors.get('pink')
-
 randColor=''
-
 cr_color=colors.get('white')
 
 def changeColor():
-
     global randColor
-
     colorCheck=True
-
     while colorCheck:
-
         randColor=random.choice(list(colors))
-
         if randColor==background:
-
             print(randColor)
-
             print(background)
-
             randColor=random.choice(list(colors))
-
         else:
-
             colorCheck=False
 
  
@@ -169,29 +138,17 @@ while check:
  
 
     keys=pygame.key.get_pressed() #this returns a list
-
     if keys[pygame.K_a] and square.x >=move:
-
         square.x -= move #substract 5 from the x value
-
     if keys[pygame.K_d] and square.x <WIDTH-wbox:
-
         square.x += move  
-
     #Jumping part
-
     if not JUMP:
-
         if keys[pygame.K_w]:
-
             square.y -= move
-
         if keys[pygame.K_s]:
-
             square.y += move  
-
         if keys[pygame.K_SPACE]:
-
             JUMP=True
 
     else:
