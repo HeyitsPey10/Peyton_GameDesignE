@@ -150,8 +150,8 @@ while check:
     if case.type ==pygame.MOUSEBUTTONDOWN:
         mouse_pos=pygame.mouse.get_pos()
         print(mouse_pos)
-        if ((mouse_pos[0] >20 and mouse_pos[0] <60) and (mouse_pos[1] >250 and mouse_pos[1] <290))
-        screen.fill(background)
+        if ((mouse_pos[0] >20 and mouse_pos[0] <60) and (mouse_pos[1] >250 and mouse_pos[1] <290)):
+            screen.fill(background)
         TitleMenu('INSTRUCTIONS')
 
     if keys[pygame.K_a] and square.x >=move:
