@@ -43,13 +43,16 @@ MenuList=['Instructions', 'Settings', 'Level 1', 'Level 2', 'Level 2', 'Level 3'
 SettingList=['Screen Size', 'Font size', 'circle color']
 check=True #for the while loop
 
+#define colors
+colors={'white':[255,255,255], 'red':[255,0,0], 'aqua':[102,153, 255],
+'orange':[255,85,0],'purple':[48,25,52],'navy':[5,31,64],'pink':[200,3,75]}
 
 #main menu variables
 wb=30
 hb=30
 xMs=50
 yMs=250
-
+sqM_color=colors.get('navy')
 
 #create screen
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
@@ -58,7 +61,8 @@ pygame.display.set_caption('Circle eats Square')
 TITLE_FNT=pygame.font.SysFont('Verdana', 70)
 MENU_FNT=pygame.font.SysFont('Verdana', 40)
 INST_FNT=pygame.font.SysFont('Verdana', 25)
-
+#Create menu square
+squareM=pygame.Rect(xMs,yMs,wb,hb)
 #TITLE
 def TitleMenu(Message):
     text=TITLE_FNT.render(Message, 1, (5,31,64))
@@ -66,8 +70,7 @@ def TitleMenu(Message):
     xt=WIDTH/2-text.get_width()/2
     screen.blit(text,(xt,50))
 
-#Create menu square
-squareM=pygame.Rect(xMs,yMs,wb,hb)
+
 def MainMenu(Mlist):
     txty=243
     squareM.y=250
@@ -87,15 +90,6 @@ def keepScore(score):
     scoreLine=str(score)+"\t"+name+"\t"+date.strftime('%m/%d/%y'+'\n')
 
 
- 
-
-
-
-
-
-#define colors
-colors={'white':[255,255,255], 'red':[255,0,0], 'aqua':[102,153, 255],
-'orange':[255,85,0],'purple':[48,25,52],'navy':[5,31,64],'pink':[200,3,75]}
 
 #Get colors
 background= colors.get('white')
@@ -113,11 +107,7 @@ def changeColor():
         else:
             colorCheck=False
 
- 
-
 #Making a rand c f the square
-
-
 
 def playGame():
     global randColor
@@ -138,11 +128,11 @@ def playGame():
     yc=random.randint(rad, HEIGHT-rad)
     
     cr_color=colors.get('white')
-    sqM_color=colors.get('navy')
+    
     #inscribed Square:
     ibox=int(rad*math.sqrt(2))
     startpoint = (int(xc-ibox/2),int(yc-ibox/2))
-    print(startpoint[0]-ibox,startpoint[1])
+    # print(startpoint[0]-ibox,startpoint[1])
     insSquare=pygame.Rect(startpoint[0],startpoint[1],ibox,ibox)
     MAX=10
     jumpCount=MAX
