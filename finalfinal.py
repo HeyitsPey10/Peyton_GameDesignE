@@ -1,5 +1,22 @@
+#MAria I SUarez
+#learning how to draw circles and rectangles
+#use keys to move objects
+#Using Dictionaries
+
+#Objective of the game is for the rect to run away fom the circle, if they collide the circle etas the square, 
+#circle will  get larger, and a new rect should appear somewhere on the screen
+# K_UP                  up circle
+# K_DOWN                down circle
+# K_RIGHT               right circle
+# K_LEFT                left circle
+# K_a                   left square
+# K_d                   right square
+# K_w                   up square
+# K_s                   down square
+# K_SPACE               jump
+#initialize pygame
+
 import os, random, time, pygame, math, datetime
-from pickle import FALSE
 os.system('cls')
 name=input("What is your name? ")
 #initialize pygame
@@ -46,8 +63,6 @@ INST_FNT=pygame.font.SysFont('comicsans', 30)
 
 squareM=pygame.Rect(xMs,yMs,wb,hb)
 #Create Title
-#This function (below) is using the title font established above and determining
-#the size and placement of it
 def TitleMenu(Message):
     text=TITLE_FNT.render(Message, 1, (255,0,0))
     screen.fill((255,255,255))
@@ -55,9 +70,7 @@ def TitleMenu(Message):
     #x value = WIDTH/2 - wText/2
     xt=WIDTH/2-text.get_width()/2
     screen.blit(text,(xt,50))
-
 #This is a function uses a parameter
-#This function is determining the size/placement of all the things on the main menu
 def MainMenu(Mlist):
     txty=243
     squareM.y=250
@@ -70,8 +83,6 @@ def MainMenu(Mlist):
         txty+=50
     pygame.display.update()
     pygame.time.delay(10)
-
-#this function is randomizing the background color 
 def changeColor():
     global randColor
     colorCheck=True
@@ -83,9 +94,6 @@ def changeColor():
             randColor=random.choice(list(colors))
         else:
             colorCheck=False
-
-#this function is opening the separate file that has the instructions in it and making each 
-# line appear underneath the other           
 def instr():
     print("in instr")
     myFile=open('instructions.txt', 'r')
@@ -99,9 +107,6 @@ def instr():
         pygame.time.delay(50)
         yi+=50
     myFile.close()
-
-#This function is taking the date from the computer to use on the scoreboard and opening another
-#file with the scoreboard
 def keepScore(score):
     date=datetime.datetime.now()
     print(date.strftime('%m/%d/%Y'))
@@ -112,9 +117,6 @@ def keepScore(score):
     myFile=open('score.txt','a') 
     myFile.write(scoreLine)
     myFile.close()
-
-#This function is opening the file with the scoreboard, then putting it under the "scoreboard"
-#from the main menu
 def scoreBoard():
     myFile=open('score.txt', 'r')
     yi=150
@@ -126,18 +128,27 @@ def scoreBoard():
     j=0
     for i in range(N, -1, -1):
         print(i,stuff[i])
-        # temp[i]=stuff
-        temp[j]=stuff[i]
-        j +=1
-    for t in range(5):
-        text=INST_FNT.render(stuff[i], 1, BLACK)
-        screen.blit(text, (40,yi))
-        pygame.display.update()
-        pygame.time.delay(50)
-        yi+=50
+        # temp[j]=stuff[i]
+    #     j +=1
+    # print(temp)
+    # for i in range(N):
+    #     text=INST_FNT.render(temp[i], 1, BLACK)
+    #     screen.blit(text, (40,yi))
+    #     pygame.display.update()
+    #     pygame.time.delay(50)
+    #     yi+=50
     
-#this is the function that plays the game, all of the stuff in here is related to the
-#actual gameplay
+def keepScore(score):
+    date=datetime.datetime.now()
+    print(date.strftime('%m/%d/%Y'))
+    scoreLine='\n'+str(score)+"\t"+name+"\t"+date.strftime('%m/%d/%Y'+'\n')
+ 
+    #open a file and write in it 
+    # when y write it erases the prev 
+    myFile=open('score.txt','a') 
+    myFile.write(scoreLine)
+    myFile.close()
+
 def playGame():
     move=5 #pixels
     #square variables
@@ -240,9 +251,8 @@ mouse_pos=(0,0)
 screCk=True
 first=True
 f_SETT=True
-xm=0
+xm=0 
 ym=0
-# add xm and ym
 while check:
     for case in pygame.event.get():
         if case.type==pygame.QUIT:
@@ -251,7 +261,7 @@ while check:
             mouse_pos=pygame.mouse.get_pos()
             xm= mouse_pos[0]
             ym= mouse_pos[1]
-        
+        # print(mouse_pos)
     keys=pygame.key.get_pressed() #this returns a list
     if MAIN:
         screen.fill(background)
@@ -267,13 +277,16 @@ while check:
             INST=False
             MAIN=True
             first=True
-    if SETT:
+    if SETT and f_SETT:
         screen.fill(background)
         TitleMenu("SETTINGS")
         MainMenu(SettingList)
+        f_SETT=False
+    if SETT:
         if keys[pygame.K_ESCAPE]:
             SETT=False
             MAIN=True
+            f_SETT=True
     if LEV_I:
         screen.fill(background)
         playGame()
@@ -304,55 +317,32 @@ while check:
             SCORE=False
             MAIN=True
             screCk=True
-    
-    # while check:
-    #     xm=0
-    #     ym=0
-    #     move=10
-    #     for case in pygame.event.get():
-    #         if case.type == pygame.QUIT:
-    #             check=FALSE
-    
-    #     if xm>=20 and xm<60 and ym>=120 and ym<160:
-    #         screen.fill(background)
-
-
-    if ((xm >20 and xm <80) and (ym >250 and ym <290))or INST :
+    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >250 and mouse_pos[1] <290))or INST :
         MAIN=False
         INST=True
-    if ((xm >20 and xm <80) and (ym >300 and ym <330))and f_SETT :
+    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >300 and mouse_pos[1] <330))or SETT :
         MAIN=False
-        SETT=True 
-        f_SETT=False
-        xm=0
-        ym=0 
-    if ((xm >20 and xm <80) and (ym >350 and ym <380))or LEV_I :
+        SETT=True  
+    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >350 and mouse_pos[1] <380))or LEV_I :
         MAIN=False
         LEV_I=True   
-    if ((xm >20 and xm <80) and (ym >400 and ym <430))or LEV_II :
+    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >400 and mouse_pos[1] <430))or LEV_II :
         MAIN=False
         LEV_II=True   
-    if ((xm >20 and xm <80) and (ym >450 and ym <480))or LEV_III :
+    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >450 and mouse_pos[1] <480))or LEV_III :
         MAIN=False
         LEV_III=True   
-    if ((xm >20 and xm <80) and (ym >500 and ym <530))or SCORE :
+    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >500 and mouse_pos[1] <530))or SCORE :
         MAIN=False
         SCORE=True 
-    if ((xm >20 and xm <80) and (ym >250 and ym <290))and SETT :
-        MAIN=False
-        INST=True
-    if ((xm >20 and xm <80) and (ym >300 and ym <330))and SETT :
+    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >250 and mouse_pos[1] <290))and SETT :
+        screen.fill(background)
         TitleMenu("change")
         if keys[pygame.K_ESCAPE]:
-            SETT=False
-            MAIN=True
-    if ((xm >20 and xm <80) and (ym >350 and ym <380))and SETT :
-        MAIN=False
-        LEV_I=True   
-    if ((xm >20 and xm <80) and (ym >400 and ym <430))and SETT :
-        MAIN=False
-        LEV_II=True       
-    if ((xm >20 and xm <80) and (ym >550 and ym <580)) :
+            xm=0
+            ym=0
+            f_SETT=True
+    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >550 and mouse_pos[1] <580)) :
         screen.fill(background)
         
         keepScore(121)
@@ -373,5 +363,7 @@ while check:
 
 os.system('cls')
 pygame.quit()
+
+
 
 
