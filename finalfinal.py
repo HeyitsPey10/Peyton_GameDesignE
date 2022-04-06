@@ -317,34 +317,45 @@ while check:
             SCORE=False
             MAIN=True
             screCk=True
-    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >250 and mouse_pos[1] <290))or INST :
+    if ((xm >20 and xm <80) and (ym >250 and ym <290))or INST :
         MAIN=False
         INST=True
-    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >300 and mouse_pos[1] <330))or SETT :
+    if ((xm >20 and xm <80) and (ym >300 and ym <330))or SETT :
         MAIN=False
         SETT=True  
-    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >350 and mouse_pos[1] <380))or LEV_I :
+    if ((xm >20 and xm <80) and (ym >350 and ym <380))or LEV_I :
         MAIN=False
         LEV_I=True   
-    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >400 and mouse_pos[1] <430))or LEV_II :
+    if ((xm >20 and xm <80) and (ym >400 and ym <430))or LEV_II :
         MAIN=False
         LEV_II=True   
-    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >450 and mouse_pos[1] <480))or LEV_III :
+    if ((xm >20 and xm <80) and (ym >450 and ym <480))or LEV_III :
         MAIN=False
         LEV_III=True   
-    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >500 and mouse_pos[1] <530))or SCORE :
+    if ((xm >20 and xm <80) and (ym >500 and ym <530))or SCORE :
         MAIN=False
         SCORE=True 
-    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >250 and mouse_pos[1] <290))and SETT :
+    if ((xm >20 and xm <80) and (ym >250 and ym <290))and SETT :
         screen.fill(background)
         TitleMenu("change")
         if keys[pygame.K_ESCAPE]:
             xm=0
             ym=0
             f_SETT=True
-    if ((mouse_pos[0] >20 and mouse_pos[0] <80) and (mouse_pos[1] >550 and mouse_pos[1] <580)) :
+    if ((xm >20 and xm <80) and (ym >550 and ym <580)) :
         screen.fill(background)
-        
+
+# def changeScreenSize(xm,ym):
+#     global HEIGHT, WIDTH, screen
+#     if ((xm >20 and xm <80) and (ym >250 and ym <290)):
+#         HEIGHT=1000
+#         WIDTH=1000
+
+#     if ((xm >20 and xm <80) AND (ym >300 and ym <330)):
+#         HEIGHT=900
+#         WIDTH=800
+#     screen=pygame.display,set_mode((WIDTH,HEIGHT))
+
         keepScore(121)
         text=INST_FNT.render("Make sure you update the score file", 1, BLACK)
         screen.blit(text, (40,200))
