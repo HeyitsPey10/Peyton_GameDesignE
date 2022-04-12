@@ -1,1 +1,3 @@
-follow instructions
+Use the keys to prevent the square 
+from being eaten by the circle. 
+Arrow keys control the circle. 
