@@ -320,7 +320,7 @@ while check:
     if ((xm >20 and xm <80) and (ym >250 and ym <290))or INST :
         MAIN=False
         INST=True
-    if ((xm >20 and xm <80) and (ym >300 and ym <330))or SETT :
+    if ((xm >20 and xm <80) and (ym >300 and ym <330))and MAIN :
         MAIN=False
         SETT=True  
     if ((xm >20 and xm <80) and (ym >350 and ym <380))or LEV_I :
