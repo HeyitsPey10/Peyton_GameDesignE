@@ -16,8 +16,10 @@ clock = pygame.time.Clock()
 
 x = 50
 y = 400
-width = 64
+width = 50
 height = 64
+WIDTH= 500
+HEIGHT=500
 vel = 5
 isJump = False
 jumpCount = 10
@@ -60,15 +62,18 @@ while run:
         x -= vel
         left = True
         right = False
-    elif keys[pygame.K_RIGHT] and x < 500 - width - vel:
+    if keys[pygame.K_RIGHT] and x < WIDTH - width - vel:
         x += vel
         right = True
         left = False
+        print(x)
     else:
         right = False
         left = False
         walkCount = 0
-        
+    if x >= WIDTH - width - vel :
+        bg = pygame.image.load('images\\background.jpg')
+        x=0
     if not(isJump):
         if keys[pygame.K_SPACE]:
             isJump = True
