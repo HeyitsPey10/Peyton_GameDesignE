@@ -1,15 +1,70 @@
-import pygame
+import pygame, os, random, math, datetime
+os.system('cls')
 pygame.init()
 
 x = 50
 y = 400
 width = 50
 height = 64
+xMs=50
+yMs=250
+wb=30
+hb=30
 WIDTH= 550
 HEIGHT=600
+MAIN=True
+INST=False
+SETT=False
+LEV_I=False
+LEV_II=False
+LEV_III=False
+SCORE=False
+TITLE_FNT=pygame.font.SysFont('comicsans', 80)
+MENU_FNT=pygame.font.SysFont('comicsans', 40)
+INST_FNT=pygame.font.SysFont('comicsans', 30)
+MenuList=['Instructions','Settings', "Level I","Level II",'Level III','Scoreboard','Exit']
+SettingList=['Screen Size',]
+check=True
 win = pygame.display.set_mode((WIDTH,HEIGHT))
+txty=243
 
-pygame.display.set_caption("First Game")
+squareM=pygame.Rect(xMs,yMs,wb,hb)
+
+#define colors
+colors={'white':[255,255,255], 'red':[255,0,0], 'aqua':[102,153, 255],
+'orange':[255,85,0],'purple':[48,25,52],'navy':[5,31,64],'pink':[200,3,75]}
+
+#Get colors
+background= colors.get('white')
+randColor=''
+cr_color=colors.get('aqua')
+sqM_color=colors.get('pink')
+BLACK=(0,0,0)
+
+def TitleMenu(Message):
+    text=TITLE_FNT.render(Message, 1, (255,0,0))
+    win.fill((255,255,255))
+    #get the width  the text 
+    #x value = WIDTH/2 - wText/2
+    xt=WIDTH/2-text.get_width()/2
+    win.blit(text,(xt,50))
+
+def MainMenu(Mlist):
+    txty=243
+    squareM.y=250
+    for i in range(len(Mlist)):
+        message=Mlist[i]
+        text=INST_FNT.render(message,1,(51,131,51))
+        win.blit(text,(90,txty))
+        pygame.draw.rect(win,sqM_color, squareM )
+        squareM.y +=50
+        txty+=50
+    pygame.display.update()
+    pygame.time.delay(10)
+
+
+
+pygame.display.set_caption("StarCatch")
 
 walkRight = [pygame.image.load('images\\TheBasket.png')]
 walkLeft = [pygame.image.load('images\\TheBasket.png')]

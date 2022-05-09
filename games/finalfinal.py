@@ -61,8 +61,8 @@ MENU_FNT=pygame.font.SysFont('comicsans', 40)
 INST_FNT=pygame.font.SysFont('comicsans', 30)
 #Create square fr menu
 
-squareM=pygame.Rect(xMs,yMs,wb,hb)
-#Create Title
+pygame.Rect(xMs,yMs,wb,hb)
+#Create TitlesquareM
 def TitleMenu(Message):
     text=TITLE_FNT.render(Message, 1, (255,0,0))
     screen.fill((255,255,255))
