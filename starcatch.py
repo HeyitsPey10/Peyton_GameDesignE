@@ -1,4 +1,4 @@
-import pygame, os, random, math, datetime
+import pygame, os, sys, random, math, datetime
 os.system('cls')
 pygame.init()
 
@@ -19,52 +19,17 @@ LEV_I=False
 LEV_II=False
 LEV_III=False
 SCORE=False
-TITLE_FNT=pygame.font.SysFont('comicsans', 80)
-MENU_FNT=pygame.font.SysFont('comicsans', 40)
-INST_FNT=pygame.font.SysFont('comicsans', 30)
-MenuList=['Instructions','Settings', "Level I","Level II",'Level III','Scoreboard','Exit']
-SettingList=['Screen Size',]
-check=True
+
 win = pygame.display.set_mode((WIDTH,HEIGHT))
-txty=243
-
-squareM=pygame.Rect(xMs,yMs,wb,hb)
-
-#define colors
-colors={'white':[255,255,255], 'red':[255,0,0], 'aqua':[102,153, 255],
-'orange':[255,85,0],'purple':[48,25,52],'navy':[5,31,64],'pink':[200,3,75]}
-
-#Get colors
-background= colors.get('white')
-randColor=''
-cr_color=colors.get('aqua')
-sqM_color=colors.get('pink')
-BLACK=(0,0,0)
-
-def TitleMenu(Message):
-    text=TITLE_FNT.render(Message, 1, (255,0,0))
-    win.fill((255,255,255))
-    #get the width  the text 
-    #x value = WIDTH/2 - wText/2
-    xt=WIDTH/2-text.get_width()/2
-    win.blit(text,(xt,50))
-
-def MainMenu(Mlist):
-    txty=243
-    squareM.y=250
-    for i in range(len(Mlist)):
-        message=Mlist[i]
-        text=INST_FNT.render(message,1,(51,131,51))
-        win.blit(text,(90,txty))
-        pygame.draw.rect(win,sqM_color, squareM )
-        squareM.y +=50
-        txty+=50
-    pygame.display.update()
-    pygame.time.delay(10)
-
-
-
 pygame.display.set_caption("StarCatch")
+star1=pygame.image.load('catch the fruit\images\star1.png')
+star2=pygame.image.load('catch the fruit\images\star2.png')
+star3=pygame.image.load('catch the fruit\images\star3.png')
+stars=[star1,star2,star3]
+bg = pygame.image.load('images\\useClouds.jpg')
+
+def get_font(size): # Returns Press-Start-2P in the desired size
+    return pygame.font.Font("assets/font.ttf", size)
 
 walkRight = [pygame.image.load('images\\TheBasket.png')]
 walkLeft = [pygame.image.load('images\\TheBasket.png')]
@@ -81,11 +46,15 @@ jumpCount = 10
 left = False
 right = False
 walkCount = 0
-
+dy=0
 def redrawGameWindow():
-    global walkCount
+    global walkCount,dy
+    dx=random.randint(0,width)
+    
     win.blit(bg, (0,0))
     win.blit(char, (x,y))
+    win.blit(star,(34,dy))
+    dy +=10
     pygame.display.update()
 
 
